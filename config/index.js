@@ -2,7 +2,12 @@
 var path = require ('path');
 // var url = require ("url");
 //引入服务代理
-var proxy = require ("./proxyTable");
+try {
+  var proxy = require ("./proxyTable");
+}
+catch (err) {
+
+}
 
 module.exports = {
   build: {
