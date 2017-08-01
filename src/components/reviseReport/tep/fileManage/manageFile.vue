@@ -68,7 +68,7 @@
             }
         },
         mounted() {
-
+          this.$ajax.get ("/fault")
         },
         methods: {
             /*点击某一行显示文件名称和文件后缀*/

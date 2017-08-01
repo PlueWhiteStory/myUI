@@ -7,7 +7,7 @@ module.exports = {
       //     '^/api': ''
       // },
       filter:function (pathName, req) {
-          if (pathName === "/" || pathName === "/app.js" || pathName === "/__webpack_hmr") {
+          if (pathName === "/" || pathName === "/app.js" || pathName === "/__webpack_hmr" || pathName === "/favicon.ico" ) {
             console.log ("无需代理的url" + req.url);
             return "";
           } else {
