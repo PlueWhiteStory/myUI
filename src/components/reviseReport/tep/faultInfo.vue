@@ -8,7 +8,8 @@
                 </el-col>
                 <el-col  :md="12" :lg="12">
                     <el-tag><b></b>提交时间</el-tag>
-                    <el-date-picker size="small" v-model="faultInfo.submitTime" type="datetime"></el-date-picker>
+                    <el-input size="small" :disabled="true" v-model="faultInfo.submitTime"
+                              type="text"></el-input>
                 </el-col>
                 <el-col  :md="8" v-for="el in label" :key="el.id">
                     <el-tag ><b></b>{{el.label}}</el-tag>

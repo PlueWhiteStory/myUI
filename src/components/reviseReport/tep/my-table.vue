@@ -163,6 +163,7 @@
 <style>
     #editTable .el-input__inner {
         text-align: center;
+      color:#000 !important;
     }
 
     #editTable .el-date-editor .el-input__inner {
@@ -230,4 +231,15 @@
     .icon {
         transform :rotate(180deg);
     }
+
+    .add_row{
+      position: absolute;
+      top:0;
+      right: 0;
+      z-index:99;
+      height:30px;
+    }
+  .el-button {
+
+  }
 </style>
