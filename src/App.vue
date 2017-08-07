@@ -1,13 +1,15 @@
 <template>
   <div id="app">
-    <report></report>
-     <!--<home></home>-->
+    <!--<report></report>-->
+     <home></home>
+
   </div>
 </template>
 
 <script>
-  import report from "./components/reviseReport/report.vue"
-//  import home from "./components/eova/Home.vue"
+//  import report from "./components/reviseReport/report.vue"
+//// import main from "./components/eova/Home.vue"
+import  home from "./components/faultAll_sd/main/main.vue"
 export default {
   data () {
     return {
@@ -21,8 +23,8 @@ export default {
 
   },
   components: {
-      report,
-//      home,
+//      report,
+    home,
   }
 }
 </script>
