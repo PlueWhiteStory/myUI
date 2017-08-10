@@ -4,6 +4,7 @@
     position: relative;
   }
   .layout-content{
+    height:calc(100%);
     overflow: hidden;
     background: #fff;
     border-radius: 4px;
@@ -18,7 +19,7 @@
 
 </style>
 <template>
-  <div class="layout">
+  <div class="layout-content">
     <Row style="height:100%" type="flex">
       <i-col span="3" class="layout-menu-left ">
         <my-menu :menus="menus" @treeclick="treeclick"></my-menu>
@@ -35,7 +36,7 @@
   import menu from './Menu.vue'
   import tabs from  './Tabs.vue'
   export default{
-    name: "content",
+    name: "Content",
     data(){
       return {
       }
@@ -44,11 +45,13 @@
     },
     methods:{
       treeclick(node){
-          let tab= {
-              tabName:node[0].title,
-              template:node[0].template
-          }
-          this.$store.commit("openTab",tab);
+          let tab = {};
+        tab.tabId=node[0].id;
+        tab.tabName =node[0].name;
+        tab.tabIcon=node[0].icon;
+        tab.template=node[0].template;
+        tab.show=true;
+        this.$store.commit("openTab",tab);
       },
       menu_filter(menus){
           return menus;

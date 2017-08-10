@@ -18,9 +18,8 @@
             return {}
         },
         methods: {
-            onchange(field,value){
-                console.log(field,value);
-                this.$emit("param-change",field,value);
+            onchange(value,field){
+                this.$emit("param-change",value,field);
             },
           buttonclick(){
                 this.$emit("button-click");

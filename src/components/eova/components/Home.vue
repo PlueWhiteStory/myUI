@@ -1,6 +1,6 @@
 <template>
-  <div class="home" :style="winHeight">
-  <my-header class="layout-header" :data="header"></my-header>
+  <div class="home">
+  <my-header class="layout-header" :header="header"></my-header>
   <my-content class="layout-content" :menus="menus"></my-content>
   <my-footer class="layout-footer"></my-footer>
   </div>
@@ -12,43 +12,41 @@
   export default {
     data () {
       return {
-          winHeight:{
-              height:window.innerHeight+"px",
-          },
+
         menus:[],
         user:{},
         header:{}
       }
     },
     mounted(){
-//        this.getData();
+        this.getData();
     },
     methods:{
-//      getData(){
-//        let _this=this;
-//        let url=
-//        this.$http.get('/toHome',[],function(response){
-//          let data=response;
-//          _this.$store.commit("user",data.user);
-//          _this.$store.commit("menus",data.menus);
-//          _this.user=data.user;
-//          _this.menus=data.menus;
-//          _this.header=data.header;
-//        }, function(response){
-//          // 响应错误回调
-//          _this.$Message.error(response.error);
-//        });
-//      },
+      getData(){
+        let _this=this;
+        this.$http.get('/toHome',[],function(response){
+          let data=response;
+          _this.$store.commit("user",data.user);
+          _this.$store.commit("menus",data.menus);
+          _this.user=data.user;
+          _this.menus=data.menus;
+          _this.header=data.header;
+        }, function(response){
+          // 响应错误回调
+          _this.$Message.error(response);
+        });
+      },
       updateMenu(){
-//        // 传统写法
-//        this.$http.get('/static/data/menus.json',{},function(response){
-//          // 响应成功回调
-//          let menus=data;
-//          console.log(this.menus);
-//        },function(response){
-//          // 响应错误回调
-//          this.$Message.error(response.error);
-//        });
+        // 传统写法
+        let _this=this;
+        this.$http.get('/sideMenus',{},function(response){
+          // 响应成功回调
+          _this.menus=data;
+          console.log(_this.menus);
+        },function(response){
+          // 响应错误回调
+          _this.$Message.error(response.error);
+        });
       }
     },
     components:{
@@ -67,6 +65,8 @@
 
   .home{
     display:flex;
+    height:100%;
+    min-height: 500px;
     flex-direction:column;/* 头、中部、脚纵向显示 */
   }
   .home > * {

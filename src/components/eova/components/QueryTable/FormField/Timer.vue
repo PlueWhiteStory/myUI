@@ -29,7 +29,7 @@
           }},
         computed: {
             option(){
-              console.log(this.param);
+//              console.log(this.param);
               return {
                 disabledDate (date) {
                   if (this.param) {

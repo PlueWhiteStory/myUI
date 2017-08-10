@@ -1,23 +1,30 @@
 <template>
-  <Tabs type="card" :animated="false"  :value="activeTab.name">
-    <Tab-pane  label="查询">
-      <Query-grid></Query-grid>
-    </Tab-pane>
+  <Tabs class="Tabs" type="card" :animated="false"  :value="activeTab.tabName" @on-tab-remove="handleTabRemove">
     <Tab-pane v-for="tab in TabDefault" :key="tab.tabId" :icon="tab.tabIcon" :label="tab.tabName">{{tab.tabName}}</Tab-pane>
-    <Tab-pane v-for="tab in tabs" :key="tab.tabId" :icon="tab.tabIcon" :closable="true" @on-tab-remove="handleTabRemove" :label="tab.tabName">
-      <template
-      :is="tab.template"
-      :param="tab.param">
-      </template>
+    <Tab-pane v-for="tab in tabs"
+              :name="tab.tabName"
+              :key="tab.tabId"
+              :icon="tab.tabIcon"
+              :closable="true"
+              :label="tab.tabName"
+              v-if="tab.show">
+      <component  :is="tab.template.templateName"
+                  :data="tab.template.data"
+                  :param="tab.template.param">
+      </component>
     </Tab-pane>
   </Tabs>
 </template>
 <script>
 import QueryGrid from './QueryTable/QueryGrid.vue'
+import MasterSlaveGrid from './MasterSlave/MasterSlaveGrid.vue'
   export default {
     data () {
       return {
-
+          param:{
+            url:"/lbq",
+            objectCode:'lbq_ob'
+          },
         TabDefault:[{
             tabId:'1',
             tabName:'测试1Tab',
@@ -42,34 +49,32 @@ import QueryGrid from './QueryTable/QueryGrid.vue'
         }
     },
     methods: {
-      handleTabRemove(){
-          let tabName='测试1Tab';
+      handleTabRemove(tabName){
           this.$store.commit("removeTab",{tabName});
       },
       handleTabsAdd () {
-          let tab={
-          };
-          tab.tabName='测试'+this.tabs.length;
-          this.$store.commit("openTab",tab);
-          console.log(this.tabs);
       }
     },
 
     props:['tabs'],
     components:{
-        QueryGrid
+        QueryGrid,
+      MasterSlaveGrid
     }
   }
 </script>
 
 <style>
-  .ivu-tabs {
+  .Tabs.ivu-tabs {
     box-sizing: border-box;
     position: relative;
     overflow-x: visible;
     overflow-y: hidden;
     color: #495060;
     zoom: 1;
+  }
+  .Tabs{
+    height:100%;
   }
 </style>
 

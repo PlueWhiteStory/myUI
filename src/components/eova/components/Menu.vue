@@ -7,7 +7,7 @@
         {{menu.name}}
     </template>
       <div class="layout-menu-tree">
-          <Tree :data="menu.children" @on-checked-change="treeclick"></Tree>
+          <Tree :data="menu.children" @on-select-change="treeclick"></Tree>
     </div>
     </Submenu>
   </Menu>

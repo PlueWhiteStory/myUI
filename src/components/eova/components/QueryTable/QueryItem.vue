@@ -16,16 +16,19 @@
   import Timer from './FormField/Timer.vue'
   import TimeTime from './FormField/TimeTime.vue'
   import Inputer from './FormField/Inputer.vue'
+  import Cascaders from './FormField/Cascaders.vue'
     export default{
         name: "QueryItem",
         data(){
             return {
-
             }
         },
         methods: {
-            onchange(value){
-                this.$emit("on-change",this.item.field,value);
+            onchange(value,field){
+                if(field===undefined)
+                this.$emit("on-change",value,this.item.field);
+                else
+                  this.$emit("on-change",value,field);
             }
         },
         computed: {},
@@ -34,7 +37,8 @@
         Selects,
         Timer,
         TimeTime,
-        Inputer
+        Inputer,
+        Cascaders,
       },
       props:{
             item:{

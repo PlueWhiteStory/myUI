@@ -1,0 +1,128 @@
+[{
+  "name":"Inputer",
+  "field":"Inputer",
+  "label":"主站",
+  "template":"Inputer",
+  "value":"sdfsddf",
+  "param":{}
+},{
+  "name":"InputNumber",
+  "field":"InputNumber",
+  "label":"变电站",
+  "template":"InputNumber",
+  "value":123
+},
+  {
+    "name":"radio",
+    "field":"radio",
+    "label":"通讯状态",
+    "template":"Radios",
+    "value":3,
+    "data":[
+      {
+        "label":"全部","value":1
+      },{
+        "label":"正常","value":2
+      },{
+        "label":"中断","value":3
+      }
+    ]
+  },
+  {
+    "name":"Selects",
+    "field":"Selects",
+    "label":"选择",
+    "template":"Selects",
+    "data":[{
+      "ID":1,"CN":"zs"},{
+      "ID":2,"CN":"ls"},{
+      "ID":11,"CN":"ws"},{
+      "ID":21,"CN":"ss"},{
+      "ID":31,"CN":"xs"},{
+      "ID":32,"CN":"es"},{
+      "ID":41,"CN":"cs"},{
+      "ID":42,"CN":"vs"}],
+    "value":21
+  },{
+    "name":"time",
+    "field":"time",
+    "label":"time",
+    "template":"Timer",
+    "value":"2017-7-25 10.23:21",
+    "param":{
+      "format":"yyyy-MM-dd HH:mm:ss.SSS",
+      "minDate":"2017-7-24",
+      "maxDate":"2017-7-26"
+    }
+  },
+  {
+    "name":"Cascaders",
+    "field":"Cascaders",
+    "label":"Cascaders",
+    "template":"Cascaders",
+    "value":[{
+      "field":"city",
+      "value":"beijing"
+    },{
+      "field":"place",
+      "value":"gugong"
+    }
+    ],
+    "data":[{
+      "field":"city",
+      "value": "beijing",
+      "label": "北京",
+      "children":[
+        { "field":"place",
+          "value": "gugong",
+          "label": "故宫"
+        },
+        {
+          "field":"place",
+          "value": "tiantan",
+          "label": "天坛"
+        },
+        {
+          "field":"place",
+          "value": "wangfujing",
+          "label": "王府井"
+        }
+      ]
+    }, {
+      "field":"city",
+      "value": "jiangsu",
+      "label": "江苏",
+      "children": [
+        {
+          "field":"place",
+          "value": "nanjing",
+          "label": "南京",
+          "children": [
+            {
+              "field":"didian",
+              "value": "fuzimiao",
+              "label": "夫子庙"
+            }
+          ]
+        },
+        {
+          "value": "suzhou",
+          "label": "苏州",
+          "children": [
+            {
+              "value": "zhuozhengyuan",
+              "label": "拙政园"
+            },
+            {
+              "value": "shizilin",
+              "label": "狮子林"
+            }
+          ]
+        }
+      ]
+    }],
+    "param":{
+    }
+  }]
+
+
