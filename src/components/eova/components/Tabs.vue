@@ -18,6 +18,7 @@
 <script>
 import QueryGrid from './QueryTable/QueryGrid.vue'
 import MasterSlaveGrid from './MasterSlave/MasterSlaveGrid.vue'
+import TreeGrid from './TreeGrid/TreeGrid.vue'
   export default {
     data () {
       return {
@@ -58,8 +59,9 @@ import MasterSlaveGrid from './MasterSlave/MasterSlaveGrid.vue'
 
     props:['tabs'],
     components:{
-        QueryGrid,
-      MasterSlaveGrid
+      QueryGrid,
+      MasterSlaveGrid,
+      TreeGrid
     }
   }
 </script>
@@ -75,6 +77,17 @@ import MasterSlaveGrid from './MasterSlave/MasterSlaveGrid.vue'
   }
   .Tabs{
     height:100%;
+    width: 100%;
+  }
+  .Tabs .ivu-tabs-bar{
+    margin-bottom:6px;
+  }
+  .Tabs .ivu-tabs-content{
+    height: 100%;
+  }
+  .Tabs .ivu-tabs-tabpane{
+    width: 100%;
+    height: calc(100% - 39px);
   }
 </style>
 

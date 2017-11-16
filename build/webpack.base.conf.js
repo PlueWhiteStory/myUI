@@ -19,8 +19,8 @@ module.exports = {
       : config.dev.assetsPublicPath
   },
   resolve: {
-    extensions: ['.js', '.vue', '.json'],//自动解析确定的扩展，能够使用户在引入模块时不带扩展：
-    alias: {//创建 import 或 require 的别名，来确保模块引入变得更简单
+    extensions: ['.js', '.vue', '.json'],
+    alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src')
     }

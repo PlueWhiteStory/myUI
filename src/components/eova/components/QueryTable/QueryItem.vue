@@ -50,7 +50,7 @@
 </script>
 <style>
     .QueryItem {
-      display:inline;
-      margin: 0px 40px 0px 10px;
+      display:inline-block;
+      margin: 0px 40px 10px 10px;
     }
 </style>

@@ -1,13 +1,19 @@
 <template>
-    <div class="InputerTree">
-      <Input class=" "
+    <div class="tree-input-tree-layout">
+      <Input class="tree tree-input"
              v-model="inputValue"
              size="small"
       />
-      <Tree :data="treeData"  @on-select-change="nodeClick"></Tree>
+     <ZTree
+     :treeId="treeId"
+     :setting="setting"
+     :tree-data="treeData"></ZTree>
     </div>
 </template>
 <script>
+
+  import ZTree from '../BaseComponents/zTree/zTree'
+
     export default{
         name: "InputerTree",
         data(){
@@ -15,12 +21,32 @@
               inputValue:'',
               treeData:[],
               timeOutId:undefined,
+              treeId:"myTree",
+              setting:{
+                view: {
+                  showLine: true,
+                  selectedMulti: false,
+                  dblClickExpand: false,
+                  nameIsHTML: true
+                },
+                data: {
+                  simpleData: {
+                    enable: true,
+                    idKey: "id",
+                    pIdKey: "parent_id",
+                    rootPId: 0
+                  }
+                },
+                callback: {
+                  onClick:this.nodeClick,
+                  onDblClick:this.nodeDbClick,
+                }
+              },
 
             }
         },
         mounted(){
             this.getTreeData();
-            console.log(this.treeData);
         },
         methods: {
             getTreeData(){
@@ -28,7 +54,6 @@
               console.log(this.params);
               this.$http.get('/treegrid/getTree',[this.params],function(response){
                 let data=response;
-                console.log(data);
                 _this.treeData=data;
               }, function(response){
                 // 响应错误回调
@@ -36,9 +61,12 @@
                 //_this.$Message.error(response);
               });
             },
-          nodeClick(node){
-                console.log("click");
-                this.$emit("on-select-change",node);
+          nodeClick:function(event, treeId, treeNode){
+            console.log("click",treeNode.name);
+            this.$emit("on-node-click",treeNode);
+          },
+          nodeDbClick:function(event, treeId, treeNode){
+            console.log("db",treeNode.name);
           }
         },
         computed: {
@@ -47,9 +75,9 @@
             }
         },
         components: {
-
+          ZTree,
         },
-      watch:{
+      watch:{//定时获取数据
         inputValue(newVal,old){
             if(this.timeOutId!==undefined) {
               clearTimeout(this.timeOutId);
@@ -65,17 +93,16 @@
     }
 </script>
 <style>
-  .InputerTree input.ivu-input-small{
+  .tree-input-tree-layout{
+    display: flex;
+    height: 100%;
+    overflow: auto;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .tree.tree-input{
     height: 18px;
-    width: 70%;
+    width: 80%;
+    margin:5px 5px 10px 5px;
     }
-  .InputerTree  .Inputer{
-    margin-left:5px;
-  }
-  .InputerTree .ivu-tree-title{
-    color: black;
-  }
-  .InputerTree .ivu-tree{
-    margin-left:5px;
-  }
 </style>

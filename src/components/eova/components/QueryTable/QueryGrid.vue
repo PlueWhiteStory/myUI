@@ -6,7 +6,7 @@
         @button-click="getData">
       </Query-bar>
 <Query-table
-  :columns="column"
+  :columns="columns"
   :data="data"
   @on-page-change="pageChange"
   @on-page-size-change="pageSizeChange"
@@ -27,9 +27,9 @@
         data(){
             return {
               params:{},//用于传递到后台的查询数据。
-              pagination:{},
+              pagination:undefined,
               data:[],
-              column:[{}],
+              columns:[{}],
               items:[],
             }
         },
@@ -103,7 +103,7 @@
             this.$http.get('/singlegrid/config',[_this.param],
               function (res) {
                 _this.pagination=res.pagination;
-                _this.column=res.column;
+                _this.columns=res.column;
                 _this.items=res.queryfield;
                 _this.initParams(_this.items);
                 _this.getData();
@@ -116,9 +116,14 @@
           }
 
         },
+      watch:{
+        destroy:function(){
+            this.$destroy();
+        }
+      },
       computed: {
       },
-      props:["param"],
+      props:["param","destroy"],
       components:{
         QueryBar,
         QueryTable

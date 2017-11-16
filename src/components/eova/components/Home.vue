@@ -57,10 +57,9 @@
   }
 </script>
 <style>
-  *{
-    box-sizing:content-box;/* 伸缩项目自动box-sizing:border-box，所以需调整为content-box */
-    margin:0;
-    padding:0;
+  html,body{
+    width: 100%;
+    height: 100%;
   }
 
   .home{
@@ -71,23 +70,9 @@
   }
   .home > * {
     display: block;
+    box-sizing:content-box;/* 伸缩项目自动box-sizing:border-box，所以需调整为content-box */
   }
 
-  layout-header{
-    flex:0 0 50px;/* 头、脚尺寸固定，不放大、不缩小 */
-  }
-
-  layout-footer{
-    flex:0 0 40px;/* 头、脚尺寸固定，不放大、不缩小 */
-  }
-
-  .layout-content{
-    /*
-    横向中间内容区自适应，即使未指定宽度，但会分配宽度
-    块级元素未主动设置宽度或未被子元素撑起宽度，浏览器默认为块级元素分配宽度为可使用的全部宽度，比如全屏宽。
-    */
-    flex:1;
-  }
 
 
 </style>

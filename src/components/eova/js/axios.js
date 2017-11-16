@@ -2,7 +2,7 @@
  * Created by u on 2017/7/26.
  */
 // 配置API接口地址
-var root = "http://www.doclever.cn:8080/mock/597b073e8044d03afb0790e0";
+var root = "http://www.doclever.cn:8090/mock/597b073e8044d03afb0790e0";
 // 引用axios
 var axios = require('axios');
 

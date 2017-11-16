@@ -3,7 +3,7 @@
       <Table
         class="layout-table"
         :columns="columns"
-        :data="data.data"
+        :data="_data"
         stripe
         border
         highlight-row
@@ -13,7 +13,7 @@
         size="small"></Table>
       <div v-show="pagination.isShowPagination">
       <Page class="layout-table"
-            :total="data.total"
+            :total="total"
             size="small"
             :current="pagination.currentPage"
             :pageSize="pagination.pageSize"
@@ -31,6 +31,7 @@
         name: "QueryTable",
         data(){
             return {
+                total:0,
               defaultPagination:{
                 isShowPagination:true,
                 currentPage:1,
@@ -40,9 +41,10 @@
             }
         },
         mounted(){
-            console.log("grid data",this.data);
-          console.log("grid column",this.columns);
-          this.initPagination(this.pagination);
+          console.log("grid data", this.data);
+          console.log("grid columns", this.columns);
+          this.total = 0;
+          this.initPagination();
         },
         methods: {
             pageChange(value){
@@ -59,24 +61,36 @@
             this.$emit("on-current-change",currentRow,oldCurrentRow);
 
           },
-          initPagination(pagination){
-              if(pagination.isShowPagination==undefined)
-                pagination.isShowPagination=this.defaultPagination.isShowPagination;
-                if(pagination.currentPage==undefined)
-                  pagination.currentPage=this.defaultPagination.currentPage;
-                if(pagination.pageSize==undefined)
-                    pagination.pageSize==this.defaultPagination.pageSize;
-                if(pagination.pageSizeOpt==undefined)
-                    pagination.pageSizeOpt=this.defaultPagination.pageSizeOpt;
+          initPagination(){
+
+              if(this.pagination===undefined)
+              {
+                this.pagination=this.defaultPagination;
+                return ;
+              }
           }
         },
         watch:{
           data(){
               console.log("data is change");
-
+          },
+          columns(){
+              console.log("columns is  change")
           }
         },
-        computed: {},
+        computed: {
+            _data:{
+              set:function(data){
+
+              },
+              get:function(){
+                if (this.data === undefined || this.data.data == undefined) {
+                  return []
+                } else
+                  return this.data.data;
+              }
+            }
+        },
       props:{
           data:{
 //              default:function(){

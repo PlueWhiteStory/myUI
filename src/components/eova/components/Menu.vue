@@ -1,5 +1,5 @@
 <template>
-  <Menu  theme="dark" width="auto"  @on-open-change="menuclick">
+  <Menu style="height:-webkit-fill-available;" theme="dark" width="auto"  @on-open-change="menuclick">
     <div class="layout-logo-left"></div>
     <Submenu v-for="menu in menus" :name="menu.name" :key="menu.name" >
       <template slot="title">
@@ -7,16 +7,30 @@
         {{menu.name}}
     </template>
       <div class="layout-menu-tree">
-          <Tree :data="menu.children" @on-select-change="treeclick"></Tree>
+          <ZTree :treeId="menu.id" :tree-data="menu.children" :setting="setting"></ZTree>
+
     </div>
     </Submenu>
   </Menu>
 </template>
 <script>
+  import ZTree from './BaseComponents/zTree/zTree.vue'
     export default{
       name: "menu",
         data(){
             return {
+                setting:{
+                    callback:{
+                        onClick:this.treeclick
+                    },
+                    view:{
+                      fontCss:{
+                          color:'#2d8cf0',
+                        fontSize:"26px",
+                      }
+                    }
+                },
+
             }
         },
         methods: {
@@ -31,14 +45,20 @@
                 console.log("menu-open",temp);
                 this.$emit("menuopen",temp);
             },
-            treeclick(target){
-              console.log("tree-click",target);
-              this.$emit("treeclick",target);
+            treeclick(event,treeid,node){
+              console.log("tree-click",node);
+              let tab = {};
+              tab.id=node.tId;
+              tab.name =node.name;
+              tab.template=node.template;
+              tab.show=true;
+              this.$emit("treeclick",tab);
             }
         },
         computed:{
         },
       components:{
+            ZTree
 
       },
       props:["menus"]
@@ -54,7 +74,7 @@
     margin: 15px auto;
   }
   .ul{
-background-color: #9ea7b4;
+      background-color: #9ea7b4;
   }
   ivu-tree-arrow ivu-tree-arrow-open{
 

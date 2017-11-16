@@ -1,35 +1,34 @@
 <style scoped>
-  .layout{
-    background: #f5f7f9;
-    position: relative;
-  }
   .layout-content{
-    height:calc(100%);
+    height:inherit;
     overflow: hidden;
     background: #fff;
     border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
   }
-  .layout-content-main{
-    margin: 10px;
+
+
+
+  .content.content-menu{
+    width:200px;
+    margin-right: 2px;
   }
-  .layout-menu-left{
-    background: #464c5b;
+  .content.content-tab{
+    width:calc(100% - 200px);
   }
 
 
 </style>
 <template>
   <div class="layout-content">
-    <Row style="height:100%" type="flex">
-      <i-col span="3" class="layout-menu-left ">
+      <div class="content content-menu">
         <my-menu :menus="menus" @treeclick="treeclick"></my-menu>
-      </i-col>
-      <i-col span="21">
-        <div class="layout-content">
-          <my-tabs class="layout-content-main" :tabs="tabs"></my-tabs>
+      </div>
+        <div class="content content-tab">
+          <my-tabs :tabs="tabs"></my-tabs>
         </div>
-      </i-col>
-    </Row>
   </div>
 </template>
 <script>
@@ -46,10 +45,10 @@
     methods:{
       treeclick(node){
           let tab = {};
-        tab.tabId=node[0].id;
-        tab.tabName =node[0].name;
-        tab.tabIcon=node[0].icon;
-        tab.template=node[0].template;
+        tab.tabId=node.id;
+        tab.tabName =node.name;
+        tab.tabIcon=node.icon;
+        tab.template=node.template;
         tab.show=true;
         this.$store.commit("openTab",tab);
       },

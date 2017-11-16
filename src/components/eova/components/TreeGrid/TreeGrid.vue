@@ -1,29 +1,30 @@
 <template>
-  <div class="TreeGrid">
-    <Row  style="height:100%" type="flex">
-      <i-col span="4">
+  <div  class="tree-grid-layout">
+    <div class="tree  tree-tree">
         <Inputer-tree :param="param"
-        @on-select-change="onTreeClick"></Inputer-tree>
-      </i-col>
-      <i-col span="20">
-        <div v-show = "modalShow">
-          <component  :is="template.templateName"
-                    :data="template.data"
-                    :param="template.param">
-          </component>
-        </div>
-        <div v-show = "!modalShow">
-          <component  :is="template.templateName"
+        @on-node-click="onTreeClick"></Inputer-tree>
+    </div>
+    <div class="tree  tree-tree-grid" v-cloak>
+      <div>
+      <keep-alive v-if="!show">
+          <component :is="template.templateName"
                       :data="template.data"
                       :param="template.param">
           </component>
-        </div>
-      </i-col>
-    </Row>
+        </keep-alive>
+      </div>
+      <div>
+        <keep-alive v-if="show">
+          <component :is="template.templateName"
+                     :data="template.data"
+                     :param="template.param">
+          </component>
+        </keep-alive>
+      </div>
+    </div>
   </div>
 </template>
 <script>
-  import ICol from "../../../../../node_modules/iview/src/components/grid/col";
   import InputerTree from './InputerTree.vue'
   import QueryGrid from  '../QueryTable/QueryGrid.vue'
   import MasterSlaveGrid from  '../MasterSlave/MasterSlaveGrid.vue'
@@ -31,22 +32,23 @@
         name: "TreeGrid",
         data(){
             return {
-              modalShow:true,
-              template:{}
+              show:true,
+              destroy:true,
+              template:{
+
+              }
             }
         },
         methods: {
             onTreeClick(node){
-            this.template = Object.assign({},node[0].template);
-
-            }
-
+            this.template = Object.assign({},node.template);
+            this.show = !this.show;
+            },
         },
         computed: {
 
         },
         components: {
-          ICol,
           InputerTree,
           MasterSlaveGrid,
           QueryGrid
@@ -55,10 +57,20 @@
     }
 </script>
 <style>
-    .TreeGrid  .tree-layout{
-      background: red;
-    }
-  .TreeGrid .grid-layout{
-    background: greenyellow;
+  .tree-grid-layout{
+    display:flex;
+    width: 100%;
+    height: 100%;
   }
+  .tree{
+    margin: 0 3px;
+  }
+
+  .tree-tree{
+    max-width: 150px;
+    min-width: 150px;
+    border:1px solid #dddee1;
+    box-shadow: 3px 3px 3px #dddee1;
+  }
+
 </style>

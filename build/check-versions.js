@@ -1,5 +1,5 @@
-var chalk = require('chalk')//控制字体颜色输出控制
-var semver = require('semver')//semver 的语义化版本规则
+var chalk = require('chalk')
+var semver = require('semver')
 var packageConfig = require('../package.json')
 var shell = require('shelljs')
 function exec (cmd) {
@@ -7,7 +7,7 @@ function exec (cmd) {
 }
 
 var versionRequirements = [
-  {//node 版本的要求
+  {
     name: 'node',
     currentVersion: semver.clean(process.version),
     versionRequirement: packageConfig.engines.node

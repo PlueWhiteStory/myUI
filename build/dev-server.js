@@ -1,15 +1,15 @@
-require('./check-versions')()//对版本的输出和控制
+require('./check-versions')()
 
-var config = require('../config')
+var config = require('../config');
+
 if (!process.env.NODE_ENV) {
   process.env.NODE_ENV = JSON.parse(config.dev.env.NODE_ENV)
 }
-
-var opn = require('opn')//一个更好的节点打开。打开网站，文件，可执行文件等内容。跨平台。
+var opn = require('opn')
 var path = require('path')
 var express = require('express')
 var webpack = require('webpack')
-var proxyMiddleware = require('http-proxy-middleware')//服务代理模块
+var proxyMiddleware = require('http-proxy-middleware')
 var webpackConfig = process.env.NODE_ENV === 'testing'
   ? require('./webpack.prod.conf')
   : require('./webpack.dev.conf')
@@ -25,14 +25,14 @@ var proxyTable = config.dev.proxyTable
 var app = express()
 var compiler = webpack(webpackConfig)
 
-var devMiddleware = require('webpack-dev-middleware')(compiler, {//热加载
+var devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
-  quiet: false
+  quiet: true
 })
 
 var hotMiddleware = require('webpack-hot-middleware')(compiler, {
   log: () => {},
-  heartbeat: 2000//发现更新后多长时间后执行热热更新操作必须小于timeout
+  heartbeat: 2000
 })
 // force page reload when html-webpack-plugin template changes
 compiler.plugin('compilation', function (compilation) {

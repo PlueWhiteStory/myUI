@@ -1,6 +1,5 @@
 <template>
   <Date-picker
-    class="Timer"
     :value="value"
     size="small"
     type="datetime"
@@ -24,7 +23,6 @@
           this.open = !this.open;
         },
           handleChange (date) {
-            this.value = date;
             this.$emit("on-change",date);
           }},
         computed: {
@@ -54,7 +52,4 @@
     }
 </script>
 <style>
-    .Timer {
-      width:100px;
-    }
 </style>

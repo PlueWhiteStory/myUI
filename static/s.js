@@ -1,0 +1,101 @@
+/**
+ * Created by Administrator on 2017/11/16.
+ */
+[
+  {
+    "name":"测试1站",
+    "title":"测试1站",
+    "iconSkin":"icon-add",
+    "template":{
+      "templateName":"QueryGrid",
+      "param":{
+        "objectCode":"mainstation_ob"
+      }
+    },
+    "children":[{
+      "name":"测试1变",
+      "iconSkin":"icon-return",
+      "title":"测试1变",
+      "template":{
+        "templateName":"MasterSlaveGrid",
+        "param":{
+          "objectCode":"station_ob",
+          "objectField":"id",
+          "slaver": [
+            {
+              "label":"录波器",
+              "field":"n_station_id",
+              "objectCode":"lbq_ob"
+            }
+          ]
+        }
+      },
+      "children":[]
+    },    {
+      "name":"测试2变",
+      "iconSkin":"icon-delete",
+      "title":"测试2变",
+      "template":{
+        "templateName":"MasterSlaveGrid",
+        "param":{
+          "objectCode":"station_ob",
+          "objectField":"id",
+          "slaver": [
+            {
+              "label":"线路",
+              "field":"n_station_id",
+              "objectCode":"xl_ob"
+            }
+          ]
+        }
+      },
+      "children":[]
+    },
+      {
+        "name":"测试3变",
+        "iconSkin":"icon-search",
+        "title":"测试3变",
+        "template":{
+          "templateName":"MasterSlaveGrid",
+          "param":{
+            "objectCode":"station_ob",
+            "objectField":"id",
+            "slaver": [
+              {
+                "label":"录波器",
+                "field":"n_station_id",
+                "objectCode":"lbq_ob"
+              },
+              {
+                "label":"线路",
+                "field":"n_station_id",
+                "objectCode":"xl_ob"
+              }
+            ]
+          }
+        },
+        "children":[]
+      }]
+  },    {
+  "name":"测试2站",
+  "title":"测试2站",
+  "template":{
+    "templateName":"QueryGrid",
+    "param":{
+      "objectCode":"mainstation_ob"
+    }
+  },
+  "children":[]
+},
+  {
+    "name":"测试3站",
+    "iconSkin":"icon-close",
+    "title":"测试3站",
+    "template":{
+      "templateName":"QueryGrid",
+      "param":{
+        "objectCode":"mainstation_ob"
+      }
+    },
+    "children":[]
+  }]

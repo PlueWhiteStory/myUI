@@ -12,8 +12,8 @@ catch (err) {
 module.exports = {
   build: {
     env: require ('./prod.env'),
-    index: path.resolve (__dirname, '../dist/index.html'),//index.html (注入资源url)将被生成的地方
-    assetsRoot: path.resolve (__dirname, '../dist'),//指向包含应用程序的所有静态资源的根目录
+    index: path.resolve (__dirname, '../dist/index.html'),
+    assetsRoot: path.resolve (__dirname, '../dist'),
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     productionSourceMap: true,
@@ -31,13 +31,10 @@ module.exports = {
   },
   dev: {
     env: require ('./dev.env'),
-    port: 8088,//指定监听的服务端口
-    autoOpenBrowser: false,//是否自动打开浏览器
+    port: 8088,
+    autoOpenBrowser: true,
     assetsSubDirectory: 'static',
-    clientLogLevel: "info",
     assetsPublicPath: '/',
-    noInfo: false,//每次保存之后，那些显示的webpack包（bundle信息）是否显示
-    progress: true,//将进度输出在控制台
     proxyTable: proxy || {}
   },
   // CSS Sourcemaps off by default because relative paths are "buggy"
